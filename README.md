@@ -9,7 +9,7 @@ This project allows users to upload an image and receive a natural language desc
 
 ![image](https://github.com/user-attachments/assets/d9700cc5-eb00-48cd-b112-36dae731d466)
 
-
+<img src="https://github.com/user-attachments/assets/d9700cc5-eb00-48cd-b112-36dae731d466" width="400" />
 
 The app is built with:
 - `Flask` for the web server
