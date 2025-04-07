@@ -3,8 +3,10 @@
 A web application that automatically generates captions for uploaded images using deep learning.
 
 ## 🚀 Overview
-This project allows users to upload an image and receive a natural language description, for example:
-> Image: a dog running on grass → Caption: "A dog is running on the grass."
+This project allows users to upload an image and receive a natural language description
+Demo: 
+![image](https://github.com/user-attachments/assets/d9700cc5-eb00-48cd-b112-36dae731d466)
+
 
 The app is built with:
 - `Flask` for the web server
@@ -28,15 +30,10 @@ The app is built with:
     source .venv/bin/activate   # On Windows: .venv\Scripts\activate
     ```
 
-3. Install required dependencies:
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-4. **Download the trained model files** from Kaggle:
+3. **Download the trained model files** from Kaggle:
     - **Model download link**: [Kaggle Model](https://www.kaggle.com/models/donghip/image-caption)
 
-5. After downloading, place the model files (`model.keras` and `vocab.pkl`) into the `model/` folder:
+4. After downloading, place the model files (`model.keras` and `vocab.pkl`) into the `model/` folder:
     ```
     image_caption/
     └── model/
@@ -56,6 +53,3 @@ The app is built with:
     ```
 
 3. Open your browser and go to [http://127.0.0.1:5000](http://127.0.0.1:5000) to use the app.
-
-## 📄 License
-MIT License
