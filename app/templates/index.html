@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Caption Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+
+        h2 {
+            color: #34495e;
+            margin: 20px 0 10px;
+            font-size: 1.5em;
+        }
+
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        input[type="file"] {
+            padding: 10px;
+            border: 2px dashed #3498db;
+            border-radius: 8px;
+            cursor: pointer;
+            background: #f8f9fa;
+            flex: 1;
+        }
+
+        input[type="submit"] {
+            padding: 12px 25px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background: #2980b9;
+        }
+
+        .paste-info {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 0.9em;
+            margin: 15px 0;
+        }
+
+        #preview {
+            max-width: 100%;
+            height: auto;
+            margin: 20px auto;
+            display: block;
+            border-radius: 8px;
+            display: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .result-container {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .result-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .caption-text {
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+            font-size: 1.1em;
+            min-height: 24px;
+        }
+
+        @media (max-width: 600px) {
+            form {
+                flex-direction: column;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Image Caption Generator</h1>
+
+        <form method="POST" enctype="multipart/form-data" id="upload-form">
+            <input type="file" name="image" accept="image/*" id="file-input" required>
+            <input type="submit" value="Generate Caption">
+        </form>
+
+        <p class="paste-info">Or paste an image using Ctrl+V</p>
+        <img id="preview">
+
+        <div class="result-container" id="result-container" style="display: none;">
+            <h2>Uploaded Image:</h2>
+            <img id="result-image" alt="Uploaded image">
+            <h2>Caption:</h2>
+            <p class="caption-text" id="caption-text"></p>
+        </div>
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('file-input');
+        const preview = document.getElementById('preview');
+        const resultContainer = document.getElementById('result-container');
+        const resultImage = document.getElementById('result-image');
+        const captionText = document.getElementById('caption-text');
+
+        function resetDisplay() {
+            preview.style.display = 'none';
+            preview.src = '';
+            resultContainer.style.display = 'none';
+            resultImage.src = '';
+            captionText.textContent = '';
+        }
+
+        document.addEventListener('paste', (event) => {
+            resetDisplay();
+            const items = (event.clipboardData || event.originalEvent.clipboardData).items;
+            for (let item of items) {
+                if (item.type.indexOf('image') !== -1) {
+                    const file = item.getAsFile();
+                    const blobUrl = URL.createObjectURL(file);
+                    preview.src = blobUrl;
+                    preview.style.display = 'block';
+
+                    const dataTransfer = new DataTransfer();
+                    dataTransfer.items.add(file);
+                    fileInput.files = dataTransfer.files;
+                }
+            }
+        });
+
+        fileInput.addEventListener('change', (event) => {
+            resetDisplay();
+            if (event.target.files && event.target.files[0]) {
+                const blobUrl = URL.createObjectURL(event.target.files[0]);
+                preview.src = blobUrl;
+                preview.style.display = 'block';
+            }
+        });
+
+        // Handle form submission and typing effect
+        document.getElementById('upload-form').addEventListener('submit', function(e) {
+            // Show result container when form is submitted
+            resultContainer.style.display = 'block';
+            resultImage.src = preview.src;
+        });
+
+        // Typing effect for caption
+        {% if caption %}
+            resultContainer.style.display = 'block';
+            resultImage.src = "{{ image_data }}";
+            
+            const text = "{{ caption }}";
+            let i = 0;
+            captionText.textContent = '';
+            
+            function typeWriter() {
+                if (i < text.length) {
+                    captionText.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 50); // Adjust speed here (ms)
+                }
+            }
+            typeWriter();
+        {% endif %}
+    </script>
+</body>
+</html>
