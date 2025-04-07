@@ -1,4 +1,4 @@
-# 🖼️ Image Captioning Web App
+# 🖼️ Image Captioning Generate
 
 A web application that automatically generates captions for uploaded images using deep learning.
 
@@ -16,7 +16,7 @@ The app is built with:
 
 ## 🧠 Model Architecture
 - **Encoder**: CNN (ResNet) to extract image features
-- **Decoder**: LSTM + Attention (Bahdanau Attention) to generate captions based on image features
+- **Decoder**: LSTM + Attention  to generate captions based on image features
 
 ## 📦 Setup Instructions
 1. Clone the repository:
@@ -34,11 +34,11 @@ The app is built with:
 3. **Download the trained model files** from Kaggle:
     - **Model download link**: [Kaggle Model](https://www.kaggle.com/models/donghip/image-caption)
 
-4. After downloading, place the model files (`model.keras` and `vocab.pkl`) into the `model/` folder:
+4. After downloading, place and rename the model files `image_caption_attention_model.keras` into the `model/` folder:
     ```
     image_caption/
     └── model/
-        ├── model.keras
+        ├── image_caption_attention_model.keras
         └── vocab.pkl
     ```
 
