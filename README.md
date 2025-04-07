@@ -7,7 +7,7 @@ This project allows users to upload an image and receive a natural language desc
 
 `Demo`: 
 
-![image](https://github.com/user-attachments/assets/d9700cc5-eb00-48cd-b112-36dae731d466 =400x400)
+![image](https://github.com/user-attachments/assets/d9700cc5-eb00-48cd-b112-36dae731d466)
 
 
 
