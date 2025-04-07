@@ -6,8 +6,11 @@ A web application that automatically generates captions for uploaded images usin
 This project allows users to upload an image and receive a natural language description
 
 `Demo`: 
+
 ![image](https://github.com/user-attachments/assets/d9700cc5-eb00-48cd-b112-36dae731d466)
 
+<![image](https://github.com/user-attachments/assets/d9700cc5-eb00-48cd-b112-36dae731d466)
+ alt="demo" width="400"/>
 
 The app is built with:
 - `Flask` for the web server
