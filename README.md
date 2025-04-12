@@ -32,7 +32,7 @@ The app is built with:
     ```
 
 3. **Download the trained model files** from Kaggle:
-    - **Model download link**: [Kaggle Model](https://www.kaggle.com/models/donghip/image-caption)
+    - **Model download link**: [Kaggle Model]([https://www.kaggle.com/models/donghip/image-caption](https://www.kaggle.com/models/donghip/image_caption))
 
 4. After downloading, place and rename the model files `image_caption_attention_model.keras` into the `model/` folder:
     ```
